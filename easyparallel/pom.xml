@@ -5,7 +5,7 @@
 	<artifactId>easyparallel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
 
 	<dependencies>
 		<dependency>
@@ -17,6 +17,12 @@
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-labs</artifactId>
 			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-stubs</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
@@ -38,24 +44,41 @@
 			<artifactId>guice</artifactId>
 			<version>3.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-servlet_2.5_spec</artifactId>
 			<version>1.2</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-servlet</artifactId>
 			<version>3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
 			<version>1.6.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-assert</artifactId>
+			<version>1.4</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

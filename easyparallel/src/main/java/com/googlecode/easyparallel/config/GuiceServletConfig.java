@@ -16,7 +16,7 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 
 			@Override
 			protected void configureServlets() {
-				serve("/easyparallel").with(EasyparallelServlet.class);
+				serve("/tasks").with(EasyparallelServlet.class);
 
 				bind(TaskRepository.class).to(
 						GoogleDatastoreTaskRepository.class);
