@@ -1,7 +1,8 @@
 package com.googlecode.easyparallel;
 
+import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,9 +14,10 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlecode.easyparallel.task.TaskRepository;
 
-@SuppressWarnings("serial")
 @Singleton
 public class EasyparallelServlet extends HttpServlet {
+
+	private static final long serialVersionUID = -3377748971950283642L;
 
 	@Inject
 	TaskRepository taskRepository;
@@ -24,13 +26,14 @@ public class EasyparallelServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse response)
 			throws IOException {
 
-		req.setAttribute("tasks", Arrays.asList("test", "test1"));
+		req.setAttribute("tasks", taskRepository.getAll());
 
 		RequestDispatcher view = req.getRequestDispatcher("status.jsp");
 		try {
 			view.forward(req, response);
 		} catch (ServletException e) {
 			e.printStackTrace();
+			response.sendError(SC_INTERNAL_SERVER_ERROR);
 		}
 	}
 

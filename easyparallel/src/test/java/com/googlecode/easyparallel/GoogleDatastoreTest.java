@@ -9,7 +9,7 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 public class GoogleDatastoreTest {
 
 	private final LocalServiceTestHelper helper = new LocalServiceTestHelper(
-				new LocalDatastoreServiceTestConfig());
+			new LocalDatastoreServiceTestConfig());
 
 	public GoogleDatastoreTest() {
 		super();
