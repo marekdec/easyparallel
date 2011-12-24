@@ -15,7 +15,7 @@ import com.google.inject.Singleton;
 import com.googlecode.easyparallel.task.TaskRepository;
 
 @Singleton
-public class EasyparallelServlet extends HttpServlet {
+public class StatusServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -3377748971950283642L;
 

@@ -13,14 +13,14 @@ import com.google.inject.Singleton;
 import com.googlecode.easyparallel.task.TaskRepository;
 
 @Singleton
-public class TaskProcessor extends HttpServlet {
+public class RemoveTaskServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1200670970536384617L;
 
 	private final TaskRepository taskRepository;
 
 	@Inject
-	public TaskProcessor(TaskRepository taskRepository) {
+	public RemoveTaskServlet(TaskRepository taskRepository) {
 		super();
 		this.taskRepository = taskRepository;
 	}
