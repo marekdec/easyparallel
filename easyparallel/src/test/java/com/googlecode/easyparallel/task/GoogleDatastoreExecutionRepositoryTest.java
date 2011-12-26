@@ -1,5 +1,6 @@
-package com.googlecode.easyparallel;
+package com.googlecode.easyparallel.task;
 
+import static com.google.appengine.api.datastore.DatastoreServiceFactory.getDatastoreService;
 import static com.google.appengine.api.datastore.FetchOptions.Builder.withDefaults;
 import static com.google.appengine.api.datastore.KeyFactory.createKeyString;
 import static org.fest.assertions.Assertions.assertThat;
@@ -9,11 +10,9 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Query;
-import com.googlecode.easyparallel.task.Execution;
-import com.googlecode.easyparallel.task.Task;
+import com.googlecode.easyparallel.GoogleDatastoreTest;
 import com.googlecode.easyparallel.task.googledatastore.GoogleDatastoreExecutionRepository;
 
 public class GoogleDatastoreExecutionRepositoryTest extends GoogleDatastoreTest {
@@ -33,7 +32,7 @@ public class GoogleDatastoreExecutionRepositoryTest extends GoogleDatastoreTest 
 		executionRepository.save(execution);
 
 		// then
-		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		DatastoreService ds = getDatastoreService();
 		List<Entity> executionsFromDb = ds.prepare(new Query("Execution"))
 				.asList(withDefaults());
 
@@ -46,5 +45,12 @@ public class GoogleDatastoreExecutionRepositoryTest extends GoogleDatastoreTest 
 				(Long) executionsFromDb.get(0).getProperty(
 						"registeredExecutorsCount")).isEqualTo(0);
 
+	}
+
+	@Test
+	public void testGetByid() {
+		// given
+
+		// when
 	}
 }

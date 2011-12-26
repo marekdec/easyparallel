@@ -32,7 +32,7 @@
 		</thead>
 		<c:forEach var="task" items="${tasks}">
 			<tr>
-		      <td>${task.name}</td><td><a href="/task/execute?id=${task.uniqueIdentifier}">Execute</a> <a href="/task/remove?id=${task.uniqueIdentifier}">Remove</a></td>
+		      <td>${task.name}</td><td><a href="/newexecution.jsp?id=${task.uniqueIdentifier}">Execute</a> <a href="/task/remove?id=${task.uniqueIdentifier}">Remove</a></td>
 		    </tr>  
 	    </c:forEach>
 	</table>

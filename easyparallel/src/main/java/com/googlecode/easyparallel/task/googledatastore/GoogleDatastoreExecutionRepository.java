@@ -17,7 +17,7 @@ public class GoogleDatastoreExecutionRepository implements ExecutionRepository {
 		DatastoreService datastore = DatastoreServiceFactory
 				.getDatastoreService();
 
-		Entity executionEntity = new Entity("Execution");
+		Entity executionEntity = new Entity(Execution.class.getSimpleName());
 
 		executionEntity.setProperty("taskKey", KeyFactory.stringToKey(execution
 				.getTask().getUniqueIdentifier()));

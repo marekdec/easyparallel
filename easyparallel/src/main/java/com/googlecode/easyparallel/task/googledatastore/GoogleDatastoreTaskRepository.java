@@ -11,7 +11,9 @@ import java.util.List;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Transaction;
 import com.googlecode.easyparallel.task.Task;
@@ -29,7 +31,7 @@ public class GoogleDatastoreTaskRepository implements TaskRepository {
 		taskEntity.setProperty("performFunction", task.getPerformFunction());
 		taskEntity.setProperty("mergeFunction", task.getMergeFunction());
 
-		// if the tx is not used, there is a delay on the persist operation
+		// thanks to the explicit tx, the commit can be easily controlled
 		Transaction tx = datastore.beginTransaction();
 		Key key = datastore.put(taskEntity);
 		tx.commit();
@@ -49,12 +51,17 @@ public class GoogleDatastoreTaskRepository implements TaskRepository {
 
 			reverse(taskEntities);
 			for (Entity t : taskEntities) {
-				tasks.add(new Task((String) t.getProperty("name"), (String) t
-						.getProperty("performFunction"), (String) t
-						.getProperty("mergeFunction"), keyToString(t.getKey())));
+				tasks.add(taskFromEntity(t));
 			}
 		}
 		return tasks;
+	}
+
+	private Task taskFromEntity(Entity t) {
+		return new Task((String) t.getProperty("name"),
+				(String) t.getProperty("performFunction"),
+				(String) t.getProperty("mergeFunction"),
+				keyToString(t.getKey()));
 	}
 
 	@Override
@@ -64,5 +71,15 @@ public class GoogleDatastoreTaskRepository implements TaskRepository {
 		tx.commit();
 
 		// TODO: remove executions here
+	}
+
+	@Override
+	public Task getById(String uniqueId) {
+		try {
+			Entity fromDatastore = datastore.get(KeyFactory.stringToKey(uniqueId));
+			return taskFromEntity(fromDatastore);
+		} catch (EntityNotFoundException e) {
+			return null;
+		}
 	}
 }
