@@ -4,10 +4,10 @@ public class Execution {
 
 	private final Task task;
 	private String uniqueIdentifier;
-	private final int requestedExecutorsCount;
-	private int registeredExecutorsCount;
+	private final long requestedExecutorsCount;
+	private long registeredExecutorsCount;
 
-	public int getRegisteredExecutorsCount() {
+	public long getRegisteredExecutorsCount() {
 		return registeredExecutorsCount;
 	}
 
@@ -19,7 +19,7 @@ public class Execution {
 		return task;
 	}
 
-	public int getRequestedExecutorsCount() {
+	public long getRequestedExecutorsCount() {
 		return requestedExecutorsCount;
 	}
 
@@ -27,6 +27,15 @@ public class Execution {
 		super();
 		this.task = task;
 		this.requestedExecutorsCount = requestedExecutorsCount;
+	}
+
+	public Execution(Task task, long requestedExecutorsCount,
+			long registeredExecutorsCount, String uniqueId) {
+		super();
+		this.task = task;
+		this.requestedExecutorsCount = requestedExecutorsCount;
+		this.registeredExecutorsCount = registeredExecutorsCount;
+		this.uniqueIdentifier = uniqueId;
 	}
 
 	public String getUniqueIdentifier() {

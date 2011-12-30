@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlecode.easyparallel.task.ExecutionRepository;
 import com.googlecode.easyparallel.task.TaskRepository;
 
 @Singleton
@@ -22,11 +23,15 @@ public class StatusServlet extends HttpServlet {
 	@Inject
 	TaskRepository taskRepository;
 
+	@Inject
+	ExecutionRepository executionRepository;
+
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse response)
 			throws IOException {
 
 		req.setAttribute("tasks", taskRepository.getAll());
+		req.setAttribute("executions", executionRepository.getAll());
 
 		RequestDispatcher view = req.getRequestDispatcher("status.jsp");
 		try {

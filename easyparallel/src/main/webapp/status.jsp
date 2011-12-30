@@ -15,9 +15,9 @@
 		</thead>
 		<c:forEach var="execution" items="${executions}">
 			<tr>
-		      <td>${task}</td>
-		      <td>0</td>
-		      <td>0</td>
+		      <td>${execution.task.name}</td>
+		      <td>${execution.requestedExecutorsCount}</td>
+		      <td>${execution.registeredExecutorsCount}</td>
 		      <td><a href="">See results</a><a href="remove">Remove</a></td>
 		    </tr>  
 	    </c:forEach>

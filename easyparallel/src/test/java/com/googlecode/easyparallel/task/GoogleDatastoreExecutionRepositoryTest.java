@@ -17,7 +17,7 @@ import com.googlecode.easyparallel.task.googledatastore.GoogleDatastoreExecution
 
 public class GoogleDatastoreExecutionRepositoryTest extends GoogleDatastoreTest {
 
-	private final GoogleDatastoreExecutionRepository executionRepository = new GoogleDatastoreExecutionRepository();
+	private final ExecutionRepository executionRepository = new GoogleDatastoreExecutionRepository();
 
 	@Test
 	public void testSave() {
